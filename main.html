@@ -5,15 +5,33 @@
 		<link rel="stylesheet" href="styles.css">
 		
 
-			<script type="application/javascript">
-				function showmessage(message) {
-    	var element = document.getElementById('messageSection'); 
-    	if(element){
-      	  element.innerText=message;
-    	}
-}
-	
-			
+		<script type="application/javascript">
+
+			function showmessage(message) {
+				var element = document.getElementById('messageSection'); 
+				if(element){
+					element.innerText=message;
+				}
+			}
+
+			function saveProduct() {
+				// get product details
+				var itemName = document.getElementById('itemName').value; 
+				var quantity = document.getElementById('quantity').value; 	
+
+				// add product to table / list 
+				var productTableElement = document.getElementById('productTable');
+				var newRow = productTableElement.insertRow(-1);				
+				newRow.insertCell(0).innerHTML = itemName;
+				newRow.insertCell(1).innerHTML = quantity + "";
+
+				alert("product saved");
+
+				// clear or reset the form
+				var productFormElement = document.getElementById('productForm');
+				productFormElement.reset();
+			}
+
 		</script>
 
 	</head>
@@ -28,8 +46,9 @@
 			9.21
 		-->	
 		
+		<div>
 		
-			<table>
+			<table id="productTable">
 				<tr>
 					<th>Item</th>
 					<th>Quantity</th>
@@ -150,10 +169,27 @@
 
 		<div style="margin-top: 10px;
 		padding-bottom:10px ;">
-			<button class= "btn"onclick="alert('we need to get this button to add products')">
+			<button class= "btn" onclick="alert('we need to get this button to add products')">
 				Edit
 			</button>
-		</div>	
-		<script src="script.js"></script>	
+		</div>
+		
+		<div>
+			<h2>Product Form</h2>
+			<form id="productForm" onsubmit="javascript:void(0);">
+				<div>
+					<label>Item</label>
+					<input type="text" id="itemName">
+				</div>
+				<div>
+					<label>Quantity</label>
+					<input type="number" id="quantity" min="1">
+				</div>
+				<div>
+					<input type="button" onclick="saveProduct()" value="Add">
+				</div>
+			</form>
+		</div>
+			
 	</body>
 </html>
