@@ -1,195 +1,151 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>My Shop</title>
-		<link rel="stylesheet" href="styles.css">
-		
+    <head>
+        <title>My Shop</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    
+    <body onload="showmessprice(' Welcome to street shop website - Kevin');">
+        <h1>Street Shop</h1>
+        <h2 id="messpriceSection" style="text-decoration:wavy;"></h2>
+        <h2>List of products</h2>
 
-		<script type="application/javascript">
+        <!-- Task: 
+            - Add one more column to the table, and name the header of the column "Action" 
+            - Under that column, each row of product would have 2 buttons : "Edit", "Remove"
+            9.21
+        --> 
+        
+        <div class="container">
+            <div class="tab tab-1">
+                <table id="table">
+                    
+                    <tr>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                       <!-- <th>Expiry Date</th>-->
+                    </tr>
 
-			function showmessage(message) {
-				var element = document.getElementById('messageSection'); 
-				if(element){
-					element.innerText=message;
-				}
-			}
+                    <tr>
+                        <td>Cheese</td>
+                        <td>21</td>
+                        <td>£2</td>
+                    </tr>
+                    <tr>
+                        <td>A3</td>
+                        <td>B3</td>
+                        <td>30</td>
+                    </tr>
+                    <tr>
+                        <td>A2</td>
+                        <td>B2</td>
+                        <td>20</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+            <h2>Product Form</h2>
+        <div class="tab tab-2"></div>
+                    
+                   Item:<input type="text" id="itemname" name="itemname" placeholder="Enter Item Name"><br><br>
+                    Quantity:<input type="number" id="quantity" name="quantity" min="1" value="1" ><br><br>
+                    Price:<input type="number" id="price" name="price" placeholder="Enter Price">
+                </div><br>
+                    <div class="btn-out">
+                    <button class="btn" onclick="addHTMLTableRow();">Submit</button>
+                    <button class="btn" onclick="editHtmlTbleSelectedRow();">Edit</button>
+                    <button class="btn" onclick="removeSelectedRow();">Remove</button>
+                </div>
+            
+        </div>
+            
+    <script>
+        var rIndex,
+            table = document.getElementById("table");
+        
+        function checkEmptyInput()
+        {
+            var isEmpty = false,
+                itemname = document.getElementById("itemname").value,
+                quantity = document.getElementById("quantity").value,
+                price = document.getElementById("price").value;
+            
+            if(itemname === ""){
+                alert("Item Name Connot Be Empty");
+                isEmpty = true;
+            }
+            else if(quantity === ""){
+                alert("Quantity Connot Be Empty");
+                isEmpty = true;
+                }
+            else if(price === ""){
+                alert("price Connot Be Empty");
+                isEmpty = true;
+                }
+            return isEmpty;
+        }
+        //add Row 
 
-			function saveProduct() {
-				// get product details
-				var itemName = document.getElementById('itemName').value; 
-				var quantity = document.getElementById('quantity').value; 	
+        function addHTMLTableRow()
+        {   
+            if(!checkEmptyInput()){
+            var newRow = table.insertRow(table.length),
+             cell1 = newRow.insertCell(0),
+                    cell2 = newRow.insertCell(1),
+                    cell3 = newRow.insertCell(2),
+                    itemname = document.getElementById("itemname").value,
+                    quantity = document.getElementById("quantity").value,
+                    price = document.getElementById("price").value;               
 
-				// add product to table / list 
-				var productTableElement = document.getElementById('productTable');
-				var newRow = productTableElement.insertRow(-1);				
-				newRow.insertCell(0).innerHTML = itemName;
-				newRow.insertCell(1).innerHTML = quantity + "";
+            cell1.innerHTML = itemname;
+            cell2.innerHTML = quantity;
+            cell3.innerHTML = price;
+            
+            selectedRowToInput();
+        }
+        }    
+      
 
-				alert("product saved");
-
-				// clear or reset the form
-				var productFormElement = document.getElementById('productForm');
-				productFormElement.reset();
-			}
-
-		</script>
-
-	</head>
-	<body onload="showmessage(' Welcome to street shop website - Kevin');">
-		<h1>Street Shop</h1>
-		<h2 id="messageSection" style="text-decoration:wavy;"></h2>
-		<h2>List of products</h2>
-
-		<!-- Task: 
-			- Add one more column to the table, and name the header of the column "Action" 
-			- Under that column, each row of product would have 2 buttons : "Edit", "Remove"
-			9.21
-		-->	
-		
-		<div>
-		
-			<table id="productTable">
-				<tr>
-					<th>Item</th>
-					<th>Quantity</th>
-					<th>Price</th>
-					<th>Expiry Date</th>
-					<th>Action</th>
-					
-				</tr>
-				<tr>
-					<td>Bread</td>
-					<td>12</td>
-					<td>76p</td>
-					<td>20.06.2021</td>
-					<td><div style="margin-top: 10px;
-						padding-bottom: 10px ;">
-							<button class= "btn"onclick="alert('we need to get this button to add products')">
-								Edit
-							</button>
-						</div>	<div style="margin-top: 10px;
-						padding-bottom:10px ;">
-							<button class= "btn"onclick="alert('we need to get this button to add products')">
-								Remove
-							</button>
-						</div>	</td>
-				</tr>
-				<tr>
-					<td>Cheese</td>
-					<td>50</td>
-					<td>99p</td>
-					<td>20.06.2021</td>
-					<td><div style="margin-top: 10px;
-						padding-bottom:10px ;">
-							<button class= "btn"onclick="alert('we need to get this button to add products')">
-								Edit
-							</button>
-						</div>	<div style="margin-top: 10px;
-						padding-bottom:10px ;">
-							<button class= "btn"onclick="alert('we need to get this button to add products')">
-								Remove
-							</button>
-						</div>	</td>
-					
-				</tr>
-				<tr>
-					<td>Bacon</td>
-					<td>30</td>
-					<td>£1.50</td>
-					<td>20.06.2021</td>
-					<td><div style="margin-top: 10px;
-						padding-bottom:10px ;">
-							<button class= "btn"onclick="alert('we need to get this button to add products')">
-								Edit
-							</button>
-						</div>	<div style="margin-top: 10px;
-						padding-bottom:10px ;">
-							<button class= "btn"onclick="alert('we need to get this button to add products')">
-								Remove
-							</button>
-						</div>	</td>
-				</tr>
-				<tr>
-					<td>Egg</td>
-					<td>50</td>
-					<td>£1.79</td>
-					<td>30.06.2021</td>
-					<td><div style="margin-top: 10px;
-						padding-bottom:10px ;">
-							<button class= "btn"onclick="alert('we need to get this button to add products')">
-								Edit
-							</button>
-						</div>	<div style="margin-top: 10px;
-						padding-bottom:10px ;">
-							<button class= "btn"onclick="alert('we need to get this button to add products')">
-								Remove
-							</button>
-						</div>	</td>
-					
-				</tr>
-				<tr>
-					<td>Butter</td>
-					<td>45</td>
-					<td>£1</td>
-					<td>20.06.2021</td>
-					<td><div style="margin-top: 10px;
-						padding-bottom:10px ;">
-							<button class= "btn"onclick="alert('we need to get this button to add products')">
-								Edit
-							</button>
-						</div>	
-						<div style="margin-top: 10px;
-							padding-bottom:10px ;">
-								<button class= "btn"onclick="alert('we need to get this button to add products')">
-									Remove
-								</button>
-							</div>	</td>
-					
-				</tr>
-				<tr>
-					<td>Yogurt</td>
-					<td>2</td>
-					<td>85p</td>
-					<td>18.06.2021</td>
-					<td><div style="margin-top: 10px;
-						padding-bottom:10px ;">
-							<button class= "btn"onclick="alert('we need to get this button to add products')">
-								Edit
-							</button>
-						</div>	<div style="margin-top: 10px;
-						padding-bottom:10px ;">
-							<button class= "btn"onclick="alert('we need to get this button to add products')">
-								Remove
-							</button>
-						</div>	</td>
-					
-				</tr>
-			</table>
-		</div>
-
-		<div style="margin-top: 10px;
-		padding-bottom:10px ;">
-			<button class= "btn" onclick="alert('we need to get this button to add products')">
-				Edit
-			</button>
-		</div>
-		
-		<div>
-			<h2>Product Form</h2>
-			<form id="productForm" onsubmit="javascript:void(0);">
-				<div>
-					<label>Item</label>
-					<input type="text" id="itemName">
-				</div>
-				<div>
-					<label>Quantity</label>
-					<input type="number" id="quantity" min="1">
-				</div>
-				<div>
-					<input type="button" onclick="saveProduct()" value="Add">
-				</div>
-			</form>
-		</div>
-			
-	</body>
+            function selectedRowToInput()
+            {
+                
+                for(var i = 1; i < table.rows.length; i++)
+                {
+                    table.rows[i].onclick = function()
+                    {
+                      // get the seected row index
+                      rIndex = this.rowIndex;
+                      document.getElementById("itemname").value = this.cells[0].innerHTML;
+                      document.getElementById("quantity").value = this.cells[1].innerHTML;
+                      document.getElementById("price").value = this.cells[2].innerHTML;
+                    };
+                }
+            }
+            selectedRowToInput();
+            
+            function editHtmlTbleSelectedRow()
+            {
+                var itemname = document.getElementById("itemname").value,
+                    quantity = document.getElementById("quantity").value,
+                    price = document.getElementById("price").value;
+               if(!checkEmptyInput()){
+                table.rows[rIndex].cells[0].innerHTML = itemname;
+                table.rows[rIndex].cells[1].innerHTML = quantity;
+                table.rows[rIndex].cells[2].innerHTML = price;
+              }
+            }
+            
+            function removeSelectedRow()
+            {
+                table.deleteRow(rIndex);
+                // clear input text
+                document.getElementById("itemname").value = "";
+                document.getElementById("quantity").value = "";
+                document.getElementById("price").value = "";
+            }
+    </script>
+    </body>
 </html>
+
