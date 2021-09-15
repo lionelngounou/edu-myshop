@@ -1,151 +1,60 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>My Shop</title>
-        <link rel="stylesheet" href="styles.css">
-    </head>
-    
-    <body onload="showmessprice(' Welcome to street shop website - Kevin');">
+
+<head>
+    <title>My Shop</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+    <body onload="showmessage('Welcome To My Shop');">
         <h1>Street Shop</h1>
         <h2 id="messpriceSection" style="text-decoration:wavy;"></h2>
         <h2>List of products</h2>
 
-        <!-- Task: 
-            - Add one more column to the table, and name the header of the column "Action" 
-            - Under that column, each row of product would have 2 buttons : "Edit", "Remove"
-            9.21
-        --> 
-        
+        <!-- 
+            -->
+            <form>
+                <div class="form">
+                    <h2>Product Form</h2>
+                    <div class="tab tab-2"></div>
+    
+                    <form>
+                        
+                          <label for="url">Item</label>
+                          <input type="text" name="url" id="url" placeholder="Enter Item Name" /><br><br>
+                        
+                          <label for="website">Quantity</label>
+                          <input type="number" name="website" id="website" /><br><br>
+
+                          <label for="price">Price</label>
+                          <input type="text" name="price" id="price" placeholder="Enter Price" /><br><br>
+                        
+                    
+                        <div class="btn-out">
+                            <button class="btn btn-sub">Submit</button>
+                            <button class="btn btn-clr" onclick="clearForm();">Clear</button>
+                        </div>
+                    </div>
+            </form>
+
         <div class="container">
             <div class="tab tab-1">
-                <table id="table">
-                    
-                    <tr>
+                <table>
+                    <thead>
+                      <tr>
                         <th>Item</th>
                         <th>Quantity</th>
                         <th>Price</th>
-                       <!-- <th>Expiry Date</th>-->
-                    </tr>
-
-                    <tr>
-                        <td>Cheese</td>
-                        <td>21</td>
-                        <td>£2</td>
-                    </tr>
-                    <tr>
-                        <td>A3</td>
-                        <td>B3</td>
-                        <td>30</td>
-                    </tr>
-                    <tr>
-                        <td>A2</td>
-                        <td>B2</td>
-                        <td>20</td>
-                    </tr>
-                </table>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
             </div>
         </div>
+
         
-            <h2>Product Form</h2>
-        <div class="tab tab-2"></div>
-                    
-                   Item:<input type="text" id="itemname" name="itemname" placeholder="Enter Item Name"><br><br>
-                    Quantity:<input type="number" id="quantity" name="quantity" min="1" value="1" ><br><br>
-                    Price:<input type="number" id="price" name="price" placeholder="Enter Price">
-                </div><br>
-                    <div class="btn-out">
-                    <button class="btn" onclick="addHTMLTableRow();">Submit</button>
-                    <button class="btn" onclick="editHtmlTbleSelectedRow();">Edit</button>
-                    <button class="btn" onclick="removeSelectedRow();">Remove</button>
-                </div>
-            
-        </div>
-            
-    <script>
-        var rIndex,
-            table = document.getElementById("table");
-        
-        function checkEmptyInput()
-        {
-            var isEmpty = false,
-                itemname = document.getElementById("itemname").value,
-                quantity = document.getElementById("quantity").value,
-                price = document.getElementById("price").value;
-            
-            if(itemname === ""){
-                alert("Item Name Connot Be Empty");
-                isEmpty = true;
-            }
-            else if(quantity === ""){
-                alert("Quantity Connot Be Empty");
-                isEmpty = true;
-                }
-            else if(price === ""){
-                alert("price Connot Be Empty");
-                isEmpty = true;
-                }
-            return isEmpty;
-        }
-        //add Row 
-
-        function addHTMLTableRow()
-        {   
-            if(!checkEmptyInput()){
-            var newRow = table.insertRow(table.length),
-             cell1 = newRow.insertCell(0),
-                    cell2 = newRow.insertCell(1),
-                    cell3 = newRow.insertCell(2),
-                    itemname = document.getElementById("itemname").value,
-                    quantity = document.getElementById("quantity").value,
-                    price = document.getElementById("price").value;               
-
-            cell1.innerHTML = itemname;
-            cell2.innerHTML = quantity;
-            cell3.innerHTML = price;
-            
-            selectedRowToInput();
-        }
-        }    
-      
-
-            function selectedRowToInput()
-            {
-                
-                for(var i = 1; i < table.rows.length; i++)
-                {
-                    table.rows[i].onclick = function()
-                    {
-                      // get the seected row index
-                      rIndex = this.rowIndex;
-                      document.getElementById("itemname").value = this.cells[0].innerHTML;
-                      document.getElementById("quantity").value = this.cells[1].innerHTML;
-                      document.getElementById("price").value = this.cells[2].innerHTML;
-                    };
-                }
-            }
-            selectedRowToInput();
-            
-            function editHtmlTbleSelectedRow()
-            {
-                var itemname = document.getElementById("itemname").value,
-                    quantity = document.getElementById("quantity").value,
-                    price = document.getElementById("price").value;
-               if(!checkEmptyInput()){
-                table.rows[rIndex].cells[0].innerHTML = itemname;
-                table.rows[rIndex].cells[1].innerHTML = quantity;
-                table.rows[rIndex].cells[2].innerHTML = price;
-              }
-            }
-            
-            function removeSelectedRow()
-            {
-                table.deleteRow(rIndex);
-                // clear input text
-                document.getElementById("itemname").value = "";
-                document.getElementById("quantity").value = "";
-                document.getElementById("price").value = "";
-            }
-    </script>
+        <script type="text/javascript" src="script.js"></script>
     </body>
-</html>
 
+</html>
