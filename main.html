@@ -6,40 +6,42 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 
-    <body onload="showmessage('Welcome To My Shop');">
+    <body >
         <h1>Street Shop</h1>
-        <h2 id="messpriceSection" style="text-decoration:wavy;"></h2>
-        <h2>List of products</h2>
 
-        <!-- 
-            -->
-            <form>
-                <div class="form">
-                    <h2>Product Form</h2>
-                    <div class="tab tab-2"></div>
-    
-                    <form>
-                        
-                          <label for="url">Item</label>
-                          <input type="text" name="url" id="url" placeholder="Enter Item Name" /><br><br>
-                        
-                          <label for="website">Quantity</label>
-                          <input type="number" name="website" id="website" /><br><br>
+        <!--  -->
+        <div class="form">
+            <h2>Product Form</h2>
+            <div class="tab tab-2"></div>
 
-                          <label for="price">Price</label>
-                          <input type="text" name="price" id="price" placeholder="Enter Price" /><br><br>
-                        
-                    
-                        <div class="btn-out">
-                            <button class="btn btn-sub">Submit</button>
-                            <button class="btn btn-clr" onclick="clearForm();">Clear</button>
-                        </div>
-                    </div>
+            <form onsubmit="saveOrUpdateProduct(event)">
+                
+                <div style="display: block; margin-top: 16px;">
+                    <label for="name">Item name</label>
+                    <input type="text" name="name" id="name" placeholder="Enter Item Name" />
+                </div>
+                
+                <div style="display: block; margin-top: 16px;">
+                    <label for="quantity">Quantity</label>
+                    <input type="number" name="quantity" id="quantity" />
+                </div>
+
+                <div style="display: block; margin-top: 16px;">
+                    <label for="price">Price</label>
+                    <input type="text" name="price" id="price" placeholder="Enter Price" />
+                </div>                
+            
+                <div  style="display: block; ; margin-top: 16px;" class="btn-out">
+                    <input type="submit" class="btn btn-sub" value="Save"/>
+                    <button class="btn btn-clr" onclick="clearForm(); return false">Clear</button>
+                </div>
             </form>
+        </div>
 
         <div class="container">
             <div class="tab tab-1">
-                <table>
+                <h2>Product List</h2>
+                <table id="productsTable">
                     <thead>
                       <tr>
                         <th>Item</th>
@@ -53,6 +55,16 @@
             </div>
         </div>
 
+        <div class="container" style="margin-top: 32px; color: red;"> 
+            <h3>Bugs/Issues to fix</h3>
+            <ul>
+                <li>The app should not add a new row to the table if the form for product details is empty. 
+                    When you click "Submit" a new row is added even when there are no details
+                </li>
+                <li>The form should be cleared once the product is added or submitted </li>
+                <li>When you click 'clear' it also seems to add a new row to the table - it shouldn't </li>
+            </ul>
+        </div>
         
         <script type="text/javascript" src="script.js"></script>
     </body>
