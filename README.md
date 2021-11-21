@@ -1,5 +1,5 @@
 # edu-myshop
-sample project about a shop
+sample project for teaching purposes about a shop
 tasks:
     -list products in the shop
     -add products to the shop
