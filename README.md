@@ -1,4 +1,6 @@
 # edu-myshop
+Can you please check why delete row is not working?
+
 sample project for teaching purposes about a shop
 tasks:
     -list products in the shop
